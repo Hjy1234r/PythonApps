@@ -13,27 +13,35 @@ if "v2A" not in st.session_state:
 
 def on_slider_change():
     st.session_state["m1"] = st.session_state["m1_slider"]
+    st.session_state["m1_input"] = st.session_state["m1_slider"] 
     st.session_state["m2"] = st.session_state["m2_slider"]
+    st.session_state["m2_input"] = st.session_state["m2_slider"] 
     st.session_state["v1A"] = st.session_state["v1A_slider"]
+    st.session_state["v1A_input"] = st.session_state["v1A_slider"] 
     st.session_state["v2A"] = st.session_state["v2A_slider"]
+    st.session_state["v2A_input"] = st.session_state["v2A_slider"] 
 def on_input_change():
     st.session_state["m1"] = st.session_state["m1_input"]
+    st.session_state["m1_slider"] = st.session_state["m1_input"] 
     st.session_state["m2"] = st.session_state["m2_input"]
+    st.session_state["m2_slider"] = st.session_state["m2_input"] 
     st.session_state["v1A"] = st.session_state["v1A_input"]
+    st.session_state["v1A_slider"] = st.session_state["v1A_input"] 
     st.session_state["v2A"] = st.session_state["v2A_input"]
+    st.session_state["v2A_slider"] = st.session_state["v2A_input"] 
 
 
 col1, col2 = st.columns([3, 1])
 with col1:
-    st.slider("m1 (kg)", 0.1, 5.0, key="m1_slider", on_change=on_slider_change)
-    st.slider("m2 (kg)", 0.1, 5.0, key="m2_slider", on_change=on_slider_change)
-    st.slider("v1 (m/s)", -10.0, 10.0, key="v1A_slider", on_change=on_slider_change)
-    st.slider("v2 (m/s)", -10.0, 10.0, key="v2A_slider", on_change=on_slider_change)
+    st.slider("m1 (kg)", 0.1, 5.0, value=st.session_state["m1"], key="m1_slider", on_change=on_slider_change)
+    st.slider("m2 (kg)", 0.1, 5.0, value=st.session_state["m2"], key="m2_slider", on_change=on_slider_change)
+    st.slider("v1 (m/s)", -10.0, 10.0, value=st.session_state["v1A"], key="v1A_slider", on_change=on_slider_change)
+    st.slider("v2 (m/s)", -10.0, 10.0, value=st.session_state["v2A"], key="v2A_slider", on_change=on_slider_change)
 with col2:
-    st.number_input("m1 (kg)", 0.1, 5.0, key="m1_input", on_change=on_input_change)
-    st.number_input("m2 (kg)", 0.1, 5.0, key="m1_input", on_change=on_input_change)
-    st.number_input("v1 (m/s)", -10.0, 10.0, key="v1A_input", on_change=on_input_change)
-    st.number_input("v2 (m/s)", -10.0, 10.0, key="v2A_input", on_change=on_input_change)
+    st.number_input("m1 (kg)", 0.1, 5.0, value=st.session_state["m1"], key="m1_input", on_change=on_input_change)
+    st.number_input("m2 (kg)", 0.1, 5.0, value=st.session_state["m2"], key="m2_input", on_change=on_input_change)
+    st.number_input("v1 (m/s)", -10.0, 10.0, value=st.session_state["v1A"], key="v1A_input", on_change=on_input_change)
+    st.number_input("v2 (m/s)", -10.0, 10.0, value=st.session_state["v2A"], key="v2A_input", on_change=on_input_change)
 
 
 m1 = st.session_state["m1"] 
