@@ -56,8 +56,11 @@ else:
     ax2.plot(x_axis, y_axis_deltaK, label="")
 
 ax2.set_xlabel("Hệ số phục hồi e.")       
-ax2.set_ylabel("% Động năng hao hụt (%).")       
-ax2.set_title(f"m1= {m1}(kg), m2= {m2}(kg), v'1= {v1A}(m/s), v'2= {v2A}(m/s)")       
+ax2.set_ylabel("% Động năng hao hụt (%).")
+if at_zero:
+    ax2.set_title(f"m1= {m1}(kg), m2= {m2}(kg), vận tốc tiến về 0.")
+else:
+    ax2.set_title(f"m1= {m1}(kg), m2= {m2}(kg), v'1= {v1A}(m/s), v'2= {v2A}(m/s)")       
 ax2.legend()            
 st.pyplot(fig2)
 
