@@ -56,8 +56,8 @@ y_axis_v2B = []
 y_axis_deltaK = []
 y_axis_deltaK2 = []
 
-for index in range(0, 21):
-    e = index/20
+for index in range(0, 31):
+    e = index/30
     x_axis.append(e)
     v1B = (v1A*(m1 - e*m2) + v2A*m2*(1+e))/(m1 + m2)
     v2B = (v2A*(m2 - e*m1) + v1A*m1*(1+e))/(m1 + m2)
