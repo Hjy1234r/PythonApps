@@ -90,8 +90,8 @@ st.pyplot(fig)
 
 fig2, ax2 = plt.subplots()
 if at_zero:
-    ax2.plot(x_axis, y_axis_deltaK, label="Khi một vật đứng yên.")
-    ax2.plot(x_axis, y_axis_deltaK2, label="Khi hai vật di chuyển ngược chiều, cùng vận tốc.")
+    ax2.plot(x_axis, y_axis_deltaK, label="Khi một vật đứng yên, vật còn lại có vận tốc rất nhỏ.")
+    ax2.plot(x_axis, y_axis_deltaK2, label="Khi hai vật di chuyển ngược chiều, cùng vận tốc rất nhỏ.")
 else:
     ax2.plot(x_axis, y_axis_deltaK, label="")
 
