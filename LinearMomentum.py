@@ -77,7 +77,7 @@ for index in range(0, 31):
     y_axis_v2B.append(v2B)
 
 
-fig, (ax, ax2) = plt.subplots(1, 2, figsize=(15, 6))
+fig, (ax, ax2) = plt.subplots(1, 2, figsize=(30, 12))
 
 ax.plot(x_axis, y_axis_v1B, label="v'1")
 ax.plot(x_axis, y_axis_v2B, label="v'2")
