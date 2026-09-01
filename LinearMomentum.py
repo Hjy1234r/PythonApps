@@ -76,49 +76,30 @@ for index in range(0, 31):
     y_axis_v1B.append(v1B)
     y_axis_v2B.append(v2B)
 
+fig, ax = plt.subplots()
+ax.plot(x_axis, y_axis_v1B, label="v'1")
+ax.plot(x_axis, y_axis_v2B, label="v'2")
 
+ax.set_xlabel("Hệ số phục hồi e.")       
+ax.set_ylabel("Vận tốc sau va chạm (m/s).")       
+ax.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
+ax.legend()            
 
-# 1. Increase global font sizes for better readability
-plt.rcParams.update({
-    'font.size': 14,          # Global font size
-    'axes.titlesize': 16,     # Title size for individual plots
-    'axes.labelsize': 14,     # Axis label size
-    'xtick.labelsize': 12,    # X-axis tick size
-    'ytick.labelsize': 12,    # Y-axis tick size
-    'legend.fontsize': 11     # Legend text size
-})
-
-# 2. Create a much larger figure canvas (Width: 20 inches, Height: 8 inches)
-fig, (ax, ax2) = plt.subplots(1, 2, figsize=(20, 8))
-
-# --- GRAPH 1 (Left side) ---
-ax.plot(x_axis, y_axis_v1B, label="v'1", linewidth=2.5) # Increased line width
-ax.plot(x_axis, y_axis_v2B, label="v'2", linewidth=2.5)
-
-ax.set_xlabel("Hệ số phục hồi e.", labelpad=10)       
-ax.set_ylabel("Vận tốc sau va chạm (m/s).", labelpad=10)       
-ax.set_title(f"m1={m1}(kg), m2={m2}(kg);\nv1={v1A}(m/s), v2={v2A}(m/s)", pad=15) 
-ax.legend(loc="best")            
-
-# --- GRAPH 2 (Right side) ---
-if at_zero:
-    ax2.plot(x_axis, y_axis_deltaK, label="Khi một vật đứng yên, vật còn lại có vận tốc rất nhỏ.", linewidth=2.5)
-    ax2.plot(x_axis, y_axis_deltaK2, label="Khi hai vật di chuyển ngược chiều, cùng vận tốc rất nhỏ.", linewidth=2.5)
-else:
-    ax2.plot(x_axis, y_axis_deltaK, label="", linewidth=2.5)
-
-ax2.set_xlabel("Hệ số phục hồi e.", labelpad=10)       
-ax2.set_ylabel("% Động năng hao hụt (%).", labelpad=10) 
-
-if at_zero:
-    ax2.set_title(f"m1={m1}(kg), m2={m2}(kg)", pad=15) 
-else:
-    ax2.set_title(f"m1={m1}(kg), m2={m2}(kg);\nv1={v1A}(m/s), v2={v2A}(m/s)", pad=15)       
-ax2.legend(loc="best")            
-
-# 3. Clean layout spacing and display in Streamlit
-plt.tight_layout()
 st.pyplot(fig)
 
+fig2, ax2 = plt.subplots()
+if at_zero:
+    ax2.plot(x_axis, y_axis_deltaK, label="Khi một vật đứng yên, vật còn lại có vận tốc rất nhỏ.")
+    ax2.plot(x_axis, y_axis_deltaK2, label="Khi hai vật di chuyển ngược chiều, cùng vận tốc rất nhỏ.")
+else:
+    ax2.plot(x_axis, y_axis_deltaK, label="")
 
+ax2.set_xlabel("Hệ số phục hồi e.")       
+ax2.set_ylabel("% Động năng hao hụt (%).") 
+if at_zero:
+    ax2.set_title(f"m1={m1}(kg), m2={m2}(kg)") 
+else:
+    ax2.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
+ax2.legend()            
+st.pyplot(fig2)
 
