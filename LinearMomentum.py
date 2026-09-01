@@ -1,4 +1,4 @@
-from FirstApp import x_axis
+
 import matplotlib.pyplot as plt
 import streamlit as st
 
