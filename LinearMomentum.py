@@ -72,7 +72,7 @@ for index in range(0, 31):
         deltaKpercent = ((1 - e**2)*(m2/(m1 + m2)))*100
         deltaKpercent2 = ((1 - e**2)*(4*m1*m2/(pow(m1 + m2, 2))))*100
         y_axis_deltaK2.append(deltaKpercent2)
-    elif v1A == v1B and not at_zero:
+    elif v1A == v2A and not at_zero:
         equals = True
         deltaKpercent = 0
 
