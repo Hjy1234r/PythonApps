@@ -90,7 +90,7 @@ fig2, ax2 = plt.subplots()
 ax2.plot(x_axis, y_axis_deltaK, label="")
 
 ax2.set_xlabel("Hệ số phục hồi e.")       
-ax2.set_ylabel("% Động năng hao hụt (%).") 
+ax2.set_ylabel("Động năng hao hụt (%).") 
 if equals:
     ax2.set_title(f"Không xảy ra va chạm") 
 else:
