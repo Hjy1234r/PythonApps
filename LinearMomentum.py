@@ -64,7 +64,7 @@ for index in range(0, 31):
     if v1A == v1B:
         equals = True
         deltaKpercent = 0
-    if equals = False:
+    if equals == False:
         k1 = 0.5*(m1*pow(v1A, 2) + m2*pow(v2A, 2))
         k2 = 0.5*(m1*pow(v1B, 2) + m2*pow(v2B, 2))
         deltaKpercent = ((k1 - k2) / k1)*100
