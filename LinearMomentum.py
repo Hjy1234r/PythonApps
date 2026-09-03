@@ -56,7 +56,6 @@ y_axis_v2B = []
 y_axis_deltaK = []
 y_axis_deltaK2 = []
 
-at_zero = False
 equals = False
 for index in range(0, 31):
     e = index/30
@@ -67,12 +66,7 @@ for index in range(0, 31):
         k1 = 0.5*(m1*pow(v1A, 2) + m2*pow(v2A, 2))
         k2 = 0.5*(m1*pow(v1B, 2) + m2*pow(v2B, 2))
         deltaKpercent = ((k1 - k2) / k1)*100
-    if v1A == 0 and v2A == 0:
-        at_zero = True
-        deltaKpercent = ((1 - e**2)*(m2/(m1 + m2)))*100
-        deltaKpercent2 = ((1 - e**2)*(4*m1*m2/(pow(m1 + m2, 2))))*100
-        y_axis_deltaK2.append(deltaKpercent2)
-    if v1A == v2A and at_zero == False:
+    elif v1A == v1B:
         equals = True
         deltaKpercent = 0
 
@@ -93,19 +87,12 @@ else:
 ax.legend()            
 
 st.pyplot(fig)
-
 fig2, ax2 = plt.subplots()
-if at_zero:
-    ax2.plot(x_axis, y_axis_deltaK, label="Khi một vật đứng yên, vật còn lại có vận tốc rất nhỏ.")
-    ax2.plot(x_axis, y_axis_deltaK2, label="Khi hai vật di chuyển ngược chiều, cùng vận tốc rất nhỏ.")
-else:
-    ax2.plot(x_axis, y_axis_deltaK, label="")
+ax2.plot(x_axis, y_axis_deltaK, label="")
 
 ax2.set_xlabel("Hệ số phục hồi e.")       
-ax2.set_ylabel("Động năng hao hụt (%).") 
-if at_zero:
-    ax2.set_title(f"m1={m1}(kg), m2={m2}(kg)") 
-elif equals:
+ax2.set_ylabel("% Động năng hao hụt (%).") 
+if equals:
     ax2.set_title(f"Không xảy ra va chạm") 
 else:
     ax2.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
