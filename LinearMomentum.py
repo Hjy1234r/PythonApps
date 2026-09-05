@@ -55,7 +55,6 @@ y_axis_v1B = []
 y_axis_v2B = []
 y_axis_p1p2 = []
 y_axis_deltaK = []
-y_axis_deltaK2 = []
 
 equals = False
 for index in range(0, 31):
