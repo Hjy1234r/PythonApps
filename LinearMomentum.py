@@ -70,9 +70,11 @@ for index in range(0, 31):
         deltaKpercent = ((k1 - k2) / k1)*100
     if v1A == v1B:
         equals = True
-        deltaKpercent = 0
-
-    y_axis_deltaK.append(deltaKpercent)
+        
+    if equals:
+        y_axis_deltaK.append(0)
+    else:
+        y_axis_deltaK.append(deltaKpercent)
     y_axis_v1B.append(v1B)
     y_axis_v2B.append(v2B)
     y_axis_p1p2.append(p1p2)
