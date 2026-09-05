@@ -76,7 +76,6 @@ for index in range(0, 31):
     y_axis_v1B.append(v1B)
     y_axis_v2B.append(v2B)
     y_axis_p1p2.append(p1p2)
-    y_axis_p2.append(p2)
 
 #FIRST GRAPH 
 fig, ax = plt.subplots()
