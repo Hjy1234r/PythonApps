@@ -53,8 +53,7 @@ v2A = st.session_state["v2A"]
 x_axis = []
 y_axis_v1B = []
 y_axis_v2B = []
-y_axis_p1 = []
-y_axis_p2 = []
+y_axis_p1p2 = []
 y_axis_deltaK = []
 y_axis_deltaK2 = []
 
@@ -64,8 +63,7 @@ for index in range(0, 31):
     x_axis.append(e)
     v1B = (v1A*(m1 - e*m2) + v2A*m2*(1+e))/(m1 + m2)
     v2B = (v2A*(m2 - e*m1) + v1A*m1*(1+e))/(m1 + m2)
-    p1 = m1*v1A + m2*v2A
-    p2 = m1*v1B + m2*v2B
+    p1p2 = m1*v1A + m2*v2A
     if v1A != 0 or v2A != 0:
         k1 = 0.5*(m1*pow(v1A, 2) + m2*pow(v2A, 2))
         k2 = 0.5*(m1*pow(v1B, 2) + m2*pow(v2B, 2))
@@ -77,7 +75,7 @@ for index in range(0, 31):
     y_axis_deltaK.append(deltaKpercent)
     y_axis_v1B.append(v1B)
     y_axis_v2B.append(v2B)
-    y_axis_p1.append(p1)
+    y_axis_p1p2.append(p1p2)
     y_axis_p2.append(p2)
 
 #FIRST GRAPH 
@@ -107,8 +105,7 @@ st.pyplot(fig2)
 
 #THIRD GRAPH
 fig3, ax3 = plt.subplots()
-ax3.plot(x_axis, y_axis_p1, color='blue', linestyle='-',label="Tổng động lượng trước va chạm.")
-ax3.plot(x_axis, y_axis_p2, color='red', linestyle='--',label="Tổng động lượng sau va chạm.")
+ax3.plot(x_axis, y_axis_p1p2, color='black',label="Động lượng của hệ trước và sau va chạm.")
 ax3.set_xlabel("Hệ số phục hồi e")       
 ax3.set_ylabel("Động lượng (kg * m/s)")
 if equals:
