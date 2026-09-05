@@ -82,12 +82,12 @@ for index in range(0, 31):
 
 #FIRST GRAPH 
 fig, ax = plt.subplots()
-ax.plot(x_axis, y_axis_v1B, color='blue', linestyle='-', label="v'1")
-ax.plot(x_axis, y_axis_v2B, color='red', linestyle='--', label="v'2")
-ax.set_xlabel("Hệ số phục hồi e.")       
-ax.set_ylabel("Vận tốc sau va chạm (m/s).")
+ax.plot(x_axis, y_axis_v1B, color='blue', linestyle='-', label="v1'")
+ax.plot(x_axis, y_axis_v2B, color='red', linestyle='--', label="v2'")
+ax.set_xlabel("Hệ số phục hồi e")       
+ax.set_ylabel("Vận tốc sau va chạm (m/s)")
 if equals:
-    ax.set_title(f"Không xảy ra va chạm") 
+    ax.set_title(f"Không xảy ra va chạm.") 
 else:       
     ax.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
 ax.legend()            
@@ -96,10 +96,10 @@ st.pyplot(fig)
 #SECOND GRAPH
 fig2, ax2 = plt.subplots()
 ax2.plot(x_axis, y_axis_deltaK, color='red', label="")
-ax2.set_xlabel("Hệ số phục hồi e.")       
-ax2.set_ylabel("% Động năng hao hụt (%).") 
+ax2.set_xlabel("Hệ số phục hồi e")       
+ax2.set_ylabel("Động năng hao hụt (%)") 
 if equals:
-    ax2.set_title(f"Không xảy ra va chạm") 
+    ax2.set_title(f"Không xảy ra va chạm.") 
 else:
     ax2.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
 ax2.legend()            
@@ -109,10 +109,10 @@ st.pyplot(fig2)
 fig3, ax3 = plt.subplots()
 ax3.plot(x_axis, y_axis_p1, color='blue', linestyle='-',label="Tổng động lượng trước va chạm.")
 ax3.plot(x_axis, y_axis_p2, color='red', linestyle='--',label="Tổng động lượng sau va chạm.")
-ax3.set_xlabel("Hệ số phục hồi e.")       
+ax3.set_xlabel("Hệ số phục hồi e")       
 ax3.set_ylabel("Động lượng (kg * m/s)")
 if equals:
-    ax3.set_title(f"Không xảy ra va chạm") 
+    ax3.set_title(f"Không xảy ra va chạm.") 
 else:       
     ax3.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
 ax3.legend()            
