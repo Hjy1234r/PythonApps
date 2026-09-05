@@ -53,7 +53,10 @@ v2A = st.session_state["v2A"]
 x_axis = []
 y_axis_v1B = []
 y_axis_v2B = []
+y_axis_p1 = []
+y_axis_p2 = []
 y_axis_deltaK = []
+y_axis_deltaK2 = []
 
 equals = False
 for index in range(0, 31):
@@ -61,22 +64,26 @@ for index in range(0, 31):
     x_axis.append(e)
     v1B = (v1A*(m1 - e*m2) + v2A*m2*(1+e))/(m1 + m2)
     v2B = (v2A*(m2 - e*m1) + v1A*m1*(1+e))/(m1 + m2)
-    if v1A == v1B:
-        equals = True
-        deltaKpercent = 0
-    if equals == False:
+    p1 = m1*v1A + m2*v2A
+    p2 = m1*v1B + m2*v2B
+    if v1A != 0 or v2A != 0:
         k1 = 0.5*(m1*pow(v1A, 2) + m2*pow(v2A, 2))
         k2 = 0.5*(m1*pow(v1B, 2) + m2*pow(v2B, 2))
         deltaKpercent = ((k1 - k2) / k1)*100
+    elif v1A == v1B:
+        equals = True
+        deltaKpercent = 0
 
     y_axis_deltaK.append(deltaKpercent)
     y_axis_v1B.append(v1B)
     y_axis_v2B.append(v2B)
+    y_axis_p1.append(p1)
+    y_axis_p2.append(p2)
 
+#FIRST GRAPH 
 fig, ax = plt.subplots()
 ax.plot(x_axis, y_axis_v1B, label="v'1")
 ax.plot(x_axis, y_axis_v2B, label="v'2")
-
 ax.set_xlabel("Hệ số phục hồi e.")       
 ax.set_ylabel("Vận tốc sau va chạm (m/s).")
 if equals:
@@ -84,16 +91,29 @@ if equals:
 else:       
     ax.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
 ax.legend()            
-
 st.pyplot(fig)
+
+#SECOND GRAPH
 fig2, ax2 = plt.subplots()
 ax2.plot(x_axis, y_axis_deltaK, label="")
-
 ax2.set_xlabel("Hệ số phục hồi e.")       
-ax2.set_ylabel("Động năng hao hụt (%).") 
+ax2.set_ylabel("% Động năng hao hụt (%).") 
 if equals:
     ax2.set_title(f"Không xảy ra va chạm") 
 else:
     ax2.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
 ax2.legend()            
 st.pyplot(fig2)
+
+#THIRD GRAPH
+fig3, ax3 = plt.subplots()
+ax3.plot(x_axis, y_axis_p1, label="Tổng động lượng trước va chạm.")
+ax3.plot(x_axis, y_axis_p2, label="Tổng động lượng sau va chạm.")
+ax3.set_xlabel("Hệ số phục hồi e.")       
+ax3.set_ylabel("Động lượng (kg * m/s)")
+if equals:
+    ax3.set_title(f"Không xảy ra va chạm") 
+else:       
+    ax3.set_title(f"m1={m1}(kg), m2={m2}(kg); v1={v1A}(m/s), v2={v2A}(m/s)")       
+ax3.legend()            
+st.pyplot(fig3)
