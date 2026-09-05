@@ -82,8 +82,8 @@ for index in range(0, 31):
 
 #FIRST GRAPH 
 fig, ax = plt.subplots()
-ax.plot(x_axis, y_axis_v1B, label="v'1")
-ax.plot(x_axis, y_axis_v2B, label="v'2")
+ax.plot(x_axis, y_axis_v1B, color='blue', linestyle='-', label="v'1")
+ax.plot(x_axis, y_axis_v2B, color='red', linestyle='--', label="v'2")
 ax.set_xlabel("Hệ số phục hồi e.")       
 ax.set_ylabel("Vận tốc sau va chạm (m/s).")
 if equals:
@@ -95,7 +95,7 @@ st.pyplot(fig)
 
 #SECOND GRAPH
 fig2, ax2 = plt.subplots()
-ax2.plot(x_axis, y_axis_deltaK, label="")
+ax2.plot(x_axis, y_axis_deltaK, color='red', label="")
 ax2.set_xlabel("Hệ số phục hồi e.")       
 ax2.set_ylabel("% Động năng hao hụt (%).") 
 if equals:
@@ -107,8 +107,8 @@ st.pyplot(fig2)
 
 #THIRD GRAPH
 fig3, ax3 = plt.subplots()
-ax3.plot(x_axis, y_axis_p1, label="Tổng động lượng trước va chạm.")
-ax3.plot(x_axis, y_axis_p2, label="Tổng động lượng sau va chạm.")
+ax3.plot(x_axis, y_axis_p1, color='blue', linestyle='-',label="Tổng động lượng trước va chạm.")
+ax3.plot(x_axis, y_axis_p2, color='red', linestyle='--',label="Tổng động lượng sau va chạm.")
 ax3.set_xlabel("Hệ số phục hồi e.")       
 ax3.set_ylabel("Động lượng (kg * m/s)")
 if equals:
