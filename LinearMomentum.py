@@ -64,7 +64,7 @@ for index in range(0, 31):
     v1B = (v1A*(m1 - e*m2) + v2A*m2*(1+e))/(m1 + m2)
     v2B = (v2A*(m2 - e*m1) + v1A*m1*(1+e))/(m1 + m2)
     p1p2 = m1*v1A + m2*v2A
-    if v1A != 0 or v2A != 0:
+    if v1A != 0 or v2A != 0 and v1A != v1B:
         k1 = 0.5*(m1*pow(v1A, 2) + m2*pow(v2A, 2))
         k2 = 0.5*(m1*pow(v1B, 2) + m2*pow(v2B, 2))
         deltaKpercent = ((k1 - k2) / k1)*100
