@@ -100,8 +100,8 @@ deltaK_new = []
 for index2 in range(1,51):
     m1_noninput = index2/10
     m1_noninputlist.append(m1_noninput)
-    v1Bnew = (v1A*(m1_noninput - e*m2) + v2A*m2*(1+1)) / (m1_noninput + m2)
-    v2Bnew = (v2A*(m2 - e*m1_noninput) + v1A*m1_noninput*(1+1)) / (m1_noninput + m2)
+    v1Bnew = (v1A*(m1_noninput - 1*m2) + v2A*m2*(1+1)) / (m1_noninput + m2)
+    v2Bnew = (v2A*(m2 - 1*m1_noninput) + v1A*m1_noninput*(1+1)) / (m1_noninput + m2)
     v1B_newlist.append(v1Bnew)
     v2B_newlist.append(v2Bnew)
 
@@ -119,8 +119,8 @@ for index3 in range(31):
     v1A_noninput = index3/3
     v1A_noninputlist.append(v1A_noninput)
 
-    v1Btemp = (v1A_noninput*(m1 - e*m2) + v2A*m2*(1+1)) / (m1 + m2)
-    v2Btemp = (v2A*(m2 - e*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)       
+    v1Btemp = (v1A_noninput*(m1 - 1*m2) + v2A*m2*(1+1)) / (m1 + m2)
+    v2Btemp = (v2A*(m2 - 1*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)       
     k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
     k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
 
