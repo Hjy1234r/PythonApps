@@ -1,0 +1,156 @@
+import matplotlib.pyplot as plt
+import streamlit as st
+import pandas as pd 
+
+st.set_page_config(layout="wide", page_title="")
+
+for key, default in [("m1", 0.1), ("m2", 0.1), ("v1A", 0.0), ("v2A", 0.0)]:
+    if key not in st.session_state:
+        st.session_state[key] = default
+
+def on_slider_change():
+    st.session_state["m1"] = st.session_state["m1_slider"]
+    st.session_state["m1_input"] = st.session_state["m1_slider"] 
+    st.session_state["m2"] = st.session_state["m2_slider"]
+    st.session_state["m2_input"] = st.session_state["m2_slider"] 
+    st.session_state["v1A"] = st.session_state["v1A_slider"]
+    st.session_state["v1A_input"] = st.session_state["v1A_slider"] 
+    st.session_state["v2A"] = st.session_state["v2A_slider"]
+    st.session_state["v2A_input"] = st.session_state["v2A_slider"] 
+
+def on_input_change():
+    st.session_state["m1"] = st.session_state["m1_input"]
+    st.session_state["m1_slider"] = st.session_state["m1_input"] 
+    st.session_state["m2"] = st.session_state["m2_input"]
+    st.session_state["m2_slider"] = st.session_state["m2_input"] 
+    st.session_state["v1A"] = st.session_state["v1A_input"]
+    st.session_state["v1A_slider"] = st.session_state["v1A_input"] 
+    st.session_state["v2A"] = st.session_state["v2A_input"]
+    st.session_state["v2A_slider"] = st.session_state["v2A_input"] 
+
+col1, col2 = st.columns([3, 1])
+with col1:
+    st.slider("m1 (kg)", 0.1, 5.0, value=st.session_state["m1"], key="m1_slider", on_change=on_slider_change)
+    st.slider("m2 (kg)", 0.1, 5.0, value=st.session_state["m2"], key="m2_slider", on_change=on_slider_change)
+    st.slider("v1 (m/s)", -10.0, 10.0, value=st.session_state["v1A"], key="v1A_slider", on_change=on_slider_change)
+    st.slider("v2 (m/s)", -10.0, 10.0, value=st.session_state["v2A"], key="v2A_slider", on_change=on_slider_change)
+with col2:
+    st.number_input("m1 (kg)", 0.1, 5.0, value=st.session_state["m1"], key="m1_input", on_change=on_input_change)
+    st.number_input("m2 (kg)", 0.1, 5.0, value=st.session_state["m2"], key="m2_input", on_change=on_input_change)
+    st.number_input("v1 (m/s)", -10.0, 10.0, value=st.session_state["v1A"], key="v1A_input", on_change=on_input_change)
+    st.number_input("v2 (m/s)", -10.0, 10.0, value=st.session_state["v2A"], key="v2A_input", on_change=on_input_change)
+
+m1 = st.session_state["m1"] 
+m2 = st.session_state["m2"] 
+v1A = st.session_state["v1A"] 
+v2A = st.session_state["v2A"] 
+
+is_collision = v1A > v2A 
+
+x_axis, y_axis_v1B, y_axis_v2B, y_axis_deltaK = [], [], [], []
+
+for index in range(31):
+    e = index / 30.0
+    x_axis.append(e)
+    
+    if is_collision:
+        v1B = (v1A*(m1 - e*m2) + v2A*m2*(1+e)) / (m1 + m2)
+        v2B = (v2A*(m2 - e*m1) + v1A*m1*(1+e)) / (m1 + m2)
+    else:
+        v1B, v2B = v1A, v2A 
+    k1 = 0.5 * (m1 * v1A**2 + m2 * v2A**2)
+    k2 = 0.5 * (m1 * v1B**2 + m2 * v2B**2)
+    if k1 == 0:
+        deltaKpercent = 0.0
+    else:
+        deltaKpercent = ((k1 - k2) / k1) * 100
+
+    y_axis_v1B.append(v1B)
+    y_axis_v2B.append(v2B)
+    y_axis_deltaK.append(deltaKpercent)
+
+col_chart1, col_chart2 = st.columns(2)
+col_chart3, col_chart4 = st.columns(2)
+
+title_text = f"m1={m1}kg, m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)"
+
+with col_chart1:
+    fig1, ax1 = plt.subplots(figsize=(5, 4))
+    ax1.plot(x_axis, y_axis_v1B, color='blue', linestyle='-', label="v1'")
+    ax1.plot(x_axis, y_axis_v2B, color='red', linestyle='--', label="v2'")
+    ax1.set_xlabel("Hệ số phục hồi e")       
+    ax1.set_ylabel("Vận tốc sau va chạm (m/s)")
+    ax1.set_title(title_text, fontsize=9)
+    ax1.legend()            
+    st.pyplot(fig1)
+
+with col_chart2:
+    fig2, ax2 = plt.subplots(figsize=(5, 4))
+    ax2.plot(x_axis, y_axis_deltaK, color='purple')
+    ax2.set_xlabel("Hệ số phục hồi e")       
+    ax2.set_ylabel("Phần trăm động năng hao hụt (%)") 
+    ax2.set_title(title_text, fontsize=9)
+    st.pyplot(fig2)
+
+m1_noninputlist, v1A_noninputlist = [], []
+v1B_newlist, v2B_newlist = [], []
+k1new, k2new = [], []
+deltaKpercent_new = []
+
+for index2 in range(1,51):
+    m1_noninput = index2/10
+    m1_noninputlist.append(m1_noninput)
+    v1Bnew = (v1A*(m1_noninput - e*m2) + v2A*m2*(1+1)) / (m1_noninput + m2)
+    v2Bnew = (v2A*(m2 - e*m1_noninput) + v1A*m1_noninput*(1+1)) / (m1_noninput + m2)
+    v1B_newlist.append(v1Bnew)
+    v2B_newlist.append(v2Bnew)
+
+with col_chart3:
+    fig3, ax3 = plt.subplots(figsize=(5, 4))
+    ax3.plot(m1_noninputlist, v1B_newlist, color='blue', linestyle='-', label="v1'")
+    ax3.plot(m1_noninputlist, v2B_newlist, color='red', linestyle='--', label="v2'")
+    ax3.set_xlabel("m1 (kg)")       
+    ax3.set_ylabel("Vận tốc sau va chạm (m/s)")
+    ax3.set_title(f"m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s | e=1", fontsize=9)
+    ax3.legend()            
+    st.pyplot(fig3)
+
+for index3 in range(31):
+    v1A_noninput = index3/3
+    v1A_noninputlist.append(v1A_noninput)
+
+    v1Btemp = (v1A_noninput*(m1 - e*m2) + v2A*m2*(1+1)) / (m1 + m2)
+    v2Btemp = (v2A*(m2 - e*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)       
+    k1new = 0.5 * (m1 * v1A**2 + m2 * v2A**2)
+    k2new = 0.5 * (m1 * v1B**2 + m2 * v2B**2)
+    if k1 == 0:
+        deltaKpercent_temp = 0.0
+    else:
+        deltaKpercent_temp = ((k1new - k2new) / k1new) * 100
+    deltaKpercent_new.append(deltaKpercent_temp)
+    
+with col_chart4:
+    fig4, ax4 = plt.subplots(figsize=(5, 4))
+    ax4.plot(v1A_noninputlist, deltaKpercent_new, color='purple')
+    ax4.set_xlabel("v1 (m/s)")       
+    ax4.set_ylabel("Phần trăm động năng hao hụt (%)") 
+    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=1", fontsize=9)
+    st.pyplot(fig4)
+
+
+
+indices_to_show = [0, 6, 12, 18, 24, 30] 
+
+data_for_table = {
+    "Hệ số e": [x_axis[i] for i in indices_to_show],
+    "v1' (m/s)": [round(y_axis_v1B[i], 2) for i in indices_to_show],
+    "v2' (m/s)": [round(y_axis_v2B[i], 2) for i in indices_to_show],
+    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 2) for i in indices_to_show],
+}
+
+df_analysis = pd.DataFrame(data_for_table)
+
+st.markdown("---") 
+
+
+st.dataframe(df_analysis, use_container_width=True)

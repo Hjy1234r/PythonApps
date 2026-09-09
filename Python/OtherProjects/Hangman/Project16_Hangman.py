@@ -1,7 +1,7 @@
 # Hangman
 
 import random
-from WordsHangman import words
+from Python.WordsHangman import words
 
 # Dictionary
 hangman_art = {
