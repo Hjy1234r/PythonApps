@@ -132,7 +132,7 @@ with col_chart4:
     ax4.plot(v1A_noninputlist, deltaK_new, color='black')
     ax4.set_xlabel("v1 (m/s)")       
     ax4.set_ylabel("Động năng hao hụt (J)") 
-    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
+    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5", fontsize=9)
     plt.axvline(x=v2A, color='gray', linestyle='--', linewidth=1)
     st.pyplot(fig4)
 
