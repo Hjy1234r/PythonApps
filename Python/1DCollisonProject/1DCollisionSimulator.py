@@ -110,7 +110,7 @@ with col_chart3:
     ax3.plot(m1_noninputlist, v2B_newlist, color='red', linestyle='--', label="v2'")
     ax3.set_xlabel("m1 (kg)")       
     ax3.set_ylabel("Vận tốc sau va chạm (m/s)")
-    ax3.set_title(f"m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s | e=1", fontsize=9)
+    ax3.set_title(f"m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s | e=1" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
     ax3.legend()            
     st.pyplot(fig3)
 
@@ -132,7 +132,7 @@ with col_chart4:
     ax4.plot(v1A_noninputlist, deltaK_new, color='black')
     ax4.set_xlabel("v1 (m/s)")       
     ax4.set_ylabel("Động năng hao hụt (J)") 
-    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5", fontsize=9)
+    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
     st.pyplot(fig4)
 
 indices_to_show = [0, 6, 12, 18, 24, 30] 
