@@ -114,8 +114,8 @@ with col_chart3:
     ax3.legend()            
     st.pyplot(fig3)
 
-for index3 in range(31):
-    v1A_noninput = index3/3
+for index3 in range(-20, 21):
+    v1A_noninput = index3/2
     v1A_noninputlist.append(v1A_noninput)
 
     v1Btemp = (v1A_noninput*(m1 - 0.5*m2) + v2A*m2*(0.5+1)) / (m1 + m2)
@@ -133,6 +133,7 @@ with col_chart4:
     ax4.set_xlabel("v1 (m/s)")       
     ax4.set_ylabel("Động năng hao hụt (J)") 
     ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
+    plt.axvline(x=v2A, color='red', linestyle='--', linewidth=2)
     st.pyplot(fig4)
 
 indices_to_show = [0, 6, 12, 18, 24, 30] 
