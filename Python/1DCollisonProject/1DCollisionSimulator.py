@@ -94,7 +94,6 @@ with col_chart2:
 
 m1_noninputlist, v1A_noninputlist = [], []
 v1B_newlist, v2B_newlist = [], []
-k1new, k2new = [], []
 deltaK_new = []
 
 for index2 in range(1,51):
