@@ -120,11 +120,12 @@ for index3 in range(31):
     v1A_noninputlist.append(v1A_noninput)
 
     v1Btemp = (v1A_noninput*(m1 - 1*m2) + v2A*m2*(1+1)) / (m1 + m2)
-    v2Btemp = (v2A*(m2 - 1*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)       
+    v2Btemp = (v2A*(m2 - 1*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)
+
     k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
     k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
 
-    deltaK_temp = 100*(k1new - k2new)/k1new
+    deltaK_temp = k1new - k2new
     deltaK_new.append(deltaK_temp)
     
 with col_chart4:
