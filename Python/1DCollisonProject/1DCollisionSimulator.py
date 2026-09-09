@@ -118,8 +118,8 @@ for index3 in range(31):
     v1A_noninput = index3/3
     v1A_noninputlist.append(v1A_noninput)
 
-    v1Btemp = (v1A_noninput*(m1 - 1*m2) + v2A*m2*(1+1)) / (m1 + m2)
-    v2Btemp = (v2A*(m2 - 1*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)
+    v1Btemp = (v1A_noninput*(m1 - 0.5*m2) + v2A*m2*(0.5+1)) / (m1 + m2)
+    v2Btemp = (v2A*(m2 - 0.5*m1) + v1A_noninput*m1*(0.5+1)) / (m1 + m2)
 
     k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
     k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
@@ -132,7 +132,7 @@ with col_chart4:
     ax4.plot(v1A_noninputlist, deltaK_new, color='black')
     ax4.set_xlabel("v1 (m/s)")       
     ax4.set_ylabel("Động năng hao hụt (J)") 
-    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=1", fontsize=9)
+    ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5", fontsize=9)
     st.pyplot(fig4)
 
 indices_to_show = [0, 6, 12, 18, 24, 30] 
