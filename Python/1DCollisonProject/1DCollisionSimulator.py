@@ -95,7 +95,7 @@ with col_chart2:
 m1_noninputlist, v1A_noninputlist = [], []
 v1B_newlist, v2B_newlist = [], []
 k1new, k2new = [], []
-deltaKpercent_new = []
+deltaK_new = []
 
 for index2 in range(1,51):
     m1_noninput = index2/10
@@ -121,23 +121,19 @@ for index3 in range(31):
 
     v1Btemp = (v1A_noninput*(m1 - e*m2) + v2A*m2*(1+1)) / (m1 + m2)
     v2Btemp = (v2A*(m2 - e*m1) + v1A_noninput*m1*(1+1)) / (m1 + m2)       
-    k1new = 0.5 * (m1 * v1A**2 + m2 * v2A**2)
-    k2new = 0.5 * (m1 * v1B**2 + m2 * v2B**2)
-    if k1 == 0:
-        deltaKpercent_temp = 0.0
-    else:
-        deltaKpercent_temp = ((k1new - k2new) / k1new) * 100
-    deltaKpercent_new.append(deltaKpercent_temp)
+    k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
+    k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
+
+    deltaK_temp = k1new - k2new
+    deltaK_new.append(deltaK_temp)
     
 with col_chart4:
     fig4, ax4 = plt.subplots(figsize=(5, 4))
-    ax4.plot(v1A_noninputlist, deltaKpercent_new, color='purple')
+    ax4.plot(v1A_noninputlist, deltaK_new, color='purple')
     ax4.set_xlabel("v1 (m/s)")       
-    ax4.set_ylabel("Phần trăm động năng hao hụt (%)") 
+    ax4.set_ylabel("Động năng hao hụt (J)") 
     ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=1", fontsize=9)
     st.pyplot(fig4)
-
-
 
 indices_to_show = [0, 6, 12, 18, 24, 30] 
 
@@ -149,8 +145,5 @@ data_for_table = {
 }
 
 df_analysis = pd.DataFrame(data_for_table)
-
 st.markdown("---") 
-
-
 st.dataframe(df_analysis, use_container_width=True)
