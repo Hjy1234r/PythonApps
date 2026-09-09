@@ -124,12 +124,12 @@ for index3 in range(31):
     k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
     k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
 
-    deltaK_temp = k1new - k2new
+    deltaK_temp = 100*(k1new - k2new)/k1new
     deltaK_new.append(deltaK_temp)
     
 with col_chart4:
     fig4, ax4 = plt.subplots(figsize=(5, 4))
-    ax4.plot(v1A_noninputlist, deltaK_new, color='purple')
+    ax4.plot(v1A_noninputlist, deltaK_new, color='black')
     ax4.set_xlabel("v1 (m/s)")       
     ax4.set_ylabel("Động năng hao hụt (J)") 
     ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=1", fontsize=9)
