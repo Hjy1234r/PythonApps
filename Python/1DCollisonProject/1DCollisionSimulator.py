@@ -76,8 +76,8 @@ title_text = f"m1={m1}kg, m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s" if is_collision 
 
 with col_chart1:
     fig1, ax1 = plt.subplots(figsize=(5, 4))
-    ax1.plot(x_axis, y_axis_v1B, color='blue', linestyle='-', label="v1'")
-    ax1.plot(x_axis, y_axis_v2B, color='red', linestyle='--', label="v2'")
+    ax1.plot(x_axis, y_axis_v1B, color='blue', label="v1'")
+    ax1.plot(x_axis, y_axis_v2B, color='red', label="v2'")
     ax1.set_xlabel("Hệ số phục hồi e")       
     ax1.set_ylabel("Vận tốc sau va chạm (m/s)")
     ax1.set_title(title_text, fontsize=9)
@@ -86,7 +86,7 @@ with col_chart1:
 
 with col_chart2:
     fig2, ax2 = plt.subplots(figsize=(5, 4))
-    ax2.plot(x_axis, y_axis_deltaK, color='purple')
+    ax2.plot(x_axis, y_axis_deltaK, color='black')
     ax2.set_xlabel("Hệ số phục hồi e")       
     ax2.set_ylabel("Phần trăm động năng hao hụt (%)") 
     ax2.set_title(title_text, fontsize=9)
@@ -106,8 +106,8 @@ for index2 in range(1,51):
 
 with col_chart3:
     fig3, ax3 = plt.subplots(figsize=(5, 4))
-    ax3.plot(m1_noninputlist, v1B_newlist, color='blue', linestyle='-', label="v1'")
-    ax3.plot(m1_noninputlist, v2B_newlist, color='red', linestyle='--', label="v2'")
+    ax3.plot(m1_noninputlist, v1B_newlist, color='blue', label="v1'")
+    ax3.plot(m1_noninputlist, v2B_newlist, color='red', label="v2'")
     ax3.set_xlabel("m1 (kg)")       
     ax3.set_ylabel("Vận tốc sau va chạm (m/s)")
     ax3.set_title(f"m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s | e=1" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
@@ -137,15 +137,15 @@ with col_chart4:
     ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
     st.pyplot(fig4)
 
-indices_to_show = [0, 6, 12, 18, 24, 30] 
+numbering = [0, 6, 12, 18, 24, 30] 
 
-data_for_table = {
-    "Hệ số e": [x_axis[i] for i in indices_to_show],
-    "v1' (m/s)": [round(y_axis_v1B[i], 2) for i in indices_to_show],
-    "v2' (m/s)": [round(y_axis_v2B[i], 2) for i in indices_to_show],
-    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 2) for i in indices_to_show],
+table = {
+    "Hệ số e": [x_axis[i] for i in numbering],
+    "v1' (m/s)": [round(y_axis_v1B[i], 2) for i in numbering],
+    "v2' (m/s)": [round(y_axis_v2B[i], 2) for i in numbering],
+    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 2) for i in numbering],
 }
-
-df_analysis = pd.DataFrame(data_for_table)
+df_analysis = pd.DataFrame(table)
 st.markdown("---") 
 st.dataframe(df_analysis, use_container_width=True)
+
