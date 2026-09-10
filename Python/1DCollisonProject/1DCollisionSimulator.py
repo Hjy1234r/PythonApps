@@ -149,15 +149,5 @@ df_analysis = pd.DataFrame(table)
 st.markdown("---") 
 st.dataframe(df_analysis, use_container_width=True)
 
-numbering2 = [0, 12, 24, 36, 49] 
-
-table2 = {
-    "m1 (kg)": [round(m1_noninputlist[i], 4) for i2 in numbering2],
-    "v1' (m/s)": [round(v1B_newlist[i], 4) for i2 in numbering2],
-    "v2' (m/s)": [round(v2B_newlist[i], 4) for i2 in numbering2],
-}
-df_analysis = pd.DataFrame(table2)
-st.markdown("---") 
-st.dataframe(df_analysis, use_container_width=True)
 
 
