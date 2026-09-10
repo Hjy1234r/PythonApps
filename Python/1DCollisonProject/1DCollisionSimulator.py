@@ -76,8 +76,8 @@ title_text = f"m1={m1}kg, m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s" if is_collision 
 
 with col_chart1:
     fig1, ax1 = plt.subplots(figsize=(5, 4))
-    ax1.plot(x_axis, y_axis_v1B, color='blue', label="v1'")
-    ax1.plot(x_axis, y_axis_v2B, color='red', label="v2'")
+    ax1.plot(x_axis, y_axis_v1B, color='blue', label="v1'", alpha=0.7)
+    ax1.plot(x_axis, y_axis_v2B, color='red', label="v2'", alpha=0.7)
     ax1.set_xlabel("Hệ số phục hồi e")       
     ax1.set_ylabel("Vận tốc sau va chạm (m/s)")
     ax1.set_title(title_text, fontsize=9)
@@ -141,9 +141,9 @@ numbering = [0, 6, 12, 18, 24, 30]
 
 table = {
     "Hệ số e": [x_axis[i] for i in numbering],
-    "v1' (m/s)": [round(y_axis_v1B[i], 2) for i in numbering],
-    "v2' (m/s)": [round(y_axis_v2B[i], 2) for i in numbering],
-    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 2) for i in numbering],
+    "v1' (m/s)": [round(y_axis_v1B[i], 4) for i in numbering],
+    "v2' (m/s)": [round(y_axis_v2B[i], 4) for i in numbering],
+    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 4) for i in numbering],
 }
 df_analysis = pd.DataFrame(table)
 st.markdown("---") 
