@@ -114,7 +114,7 @@ with col_chart3:
     ax3.legend()            
     st.pyplot(fig3)
 
-for index3 in range(-20, 21):
+for index3 in range(round(v2A, 0), 21):
     v1A_noninput = index3/2
     v1A_noninputlist.append(v1A_noninput)
 
