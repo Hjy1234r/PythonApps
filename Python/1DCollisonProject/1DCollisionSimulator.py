@@ -140,10 +140,10 @@ with col_chart4:
 numbering = [number for number in range(31)] 
 
 table = {
-    "Hệ số e": [x_axis[i] for i in numbering],
-    "v1' (m/s)": [round(y_axis_v1B[i], 4) for i in numbering],
-    "v2' (m/s)": [round(y_axis_v2B[i], 4) for i in numbering],
-    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 4) for i in numbering],
+    "Hệ số e": [round(x_axis[i], 7) for i in numbering],
+    "v1' (m/s)": [round(y_axis_v1B[i], 7) for i in numbering],
+    "v2' (m/s)": [round(y_axis_v2B[i], 7) for i in numbering],
+    "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 7) for i in numbering],
 }
 df_analysis = pd.DataFrame(table)
 st.markdown("---") 
