@@ -134,7 +134,7 @@ with col_chart4:
     ax4.set_ylabel("Động năng hao hụt (J)") 
     ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5", fontsize=9)
     ax4.axvline(x=v2A, color='gray', linestyle='--', linewidth=1)
-    ax4.axvspan(-10, v2A, hatch='//', facecolor='none', edgecolor='gray')
+    ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
     st.pyplot(fig4)
 
 indices_to_show = [0, 6, 12, 18, 24, 30] 
