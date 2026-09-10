@@ -106,8 +106,8 @@ for index2 in range(1,51):
 
 with col_chart3:
     fig3, ax3 = plt.subplots(figsize=(5, 4))
-    ax3.plot(m1_noninputlist, v1B_newlist, color='blue', label="v1'")
-    ax3.plot(m1_noninputlist, v2B_newlist, color='red', label="v2'")
+    ax3.plot(m1_noninputlist, v1B_newlist, color='blue', label="v1'", alpha=0.5)
+    ax3.plot(m1_noninputlist, v2B_newlist, color='red', label="v2'", alpha=0.5)
     ax3.set_xlabel("m1 (kg)")       
     ax3.set_ylabel("Vận tốc sau va chạm (m/s)")
     ax3.set_title(f"m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s | e=1" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
