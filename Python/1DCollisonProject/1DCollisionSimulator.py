@@ -137,7 +137,7 @@ with col_chart4:
     ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
     st.pyplot(fig4)
 
-numbering = [number in range(31)] 
+numbering = [number for number in range(31)] 
 
 table = {
     "Hệ số e": [x_axis[i] for i in numbering],
