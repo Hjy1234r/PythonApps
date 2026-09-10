@@ -137,7 +137,7 @@ with col_chart4:
     ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
     st.pyplot(fig4)
 
-numbering = [0, 6, 12, 18, 24, 30] 
+numbering = [0, 3, 6, 9, 12, 15, 18, 21, 24, 27, 30] 
 
 table = {
     "Hệ số e": [x_axis[i] for i in numbering],
@@ -148,4 +148,16 @@ table = {
 df_analysis = pd.DataFrame(table)
 st.markdown("---") 
 st.dataframe(df_analysis, use_container_width=True)
+
+numbering2 = [0, 12, 24, 36, 49] 
+
+table2 = {
+    "m1 (kg)": [round(m1_noninputlist[i], 4) for i2 in numbering2],
+    "v1' (m/s)": [round(v1B_newlist[i], 4) for i2 in numbering2],
+    "v2' (m/s)": [round(v2B_newlist[i], 4) for i2 in numbering2],
+}
+df_analysis = pd.DataFrame(table2)
+st.markdown("---") 
+st.dataframe(df_analysis, use_container_width=True)
+
 
