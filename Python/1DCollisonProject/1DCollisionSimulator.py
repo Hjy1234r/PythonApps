@@ -158,9 +158,12 @@ table3 = {
     "v1 (m/s)": [round(v1A_noninputlist[i], 4) for i in numbering3],
     "Động năng hao hụt (J)": [round(deltaK_new[i], 4) for i in numbering3],
 }
-df_analysis = pd.DataFrame(table, table2, table3)
+df_analysis1 = pd.DataFrame(table)
+df_analysis2 = pd.DataFrame(table2)
+df_analysis3 = pd.DataFrame(table3)
 st.markdown("---") 
-st.dataframe(df_analysis, use_container_width=True)
-
+st.dataframe(df_analysis1, use_container_width=True)
+st.dataframe(df_analysis2, use_container_width=True)
+st.dataframe(df_analysis3, use_container_width=True)
 
 
