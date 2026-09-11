@@ -140,6 +140,8 @@ with col_chart4:
     st.pyplot(fig4)
 
 numbering = [number for number in range(31)] 
+numbering2 = [number2 for number in range(50)]
+numbering3 = [number2 for number in range(39)]
 
 table = {
     "Hệ số e": [round(x_axis[i], 4) for i in numbering],
@@ -147,7 +149,16 @@ table = {
     "v2' (m/s)": [round(y_axis_v2B[i], 4) for i in numbering],
     "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 4) for i in numbering],
 }
-df_analysis = pd.DataFrame(table)
+table2 = {
+    "m1 (kg)": [round(m1_noninputlist[i], 4) for i in numbering2],
+    "v1' (m/s)": [round(v1B_newlist[i], 4) for i in numbering2],
+    "v2' (m/s)": [round(v2B_newlist[i], 4) for i in numbering2],
+}
+table3 = {
+    "v1 (m/s)": [round(v1A_noninputlist[i], 4) for i in numbering3],
+    "Động năng hao hụt (J)": [round(deltaK_new[i], 4) for i in numbering3],
+}
+df_analysis = pd.DataFrame(table, table2, table3)
 st.markdown("---") 
 st.dataframe(df_analysis, use_container_width=True)
 
