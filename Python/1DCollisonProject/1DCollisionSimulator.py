@@ -48,9 +48,9 @@ v1A = st.session_state["v1A"]
 v2A = st.session_state["v2A"] 
 
 elapsed = time.time() - st.session_state.get("last_change_time", 0)
-if elapsed < 0.3:
-    st.info("Updating plots...")
-    time.sleep(0.3)
+if elapsed < 1:
+    st.info("Đang cập nhật dữ liệu...")
+    time.sleep(1)
     st.rerun()
 else:
     is_collision = v1A > v2A 
