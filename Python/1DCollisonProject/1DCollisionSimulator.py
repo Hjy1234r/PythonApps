@@ -49,7 +49,7 @@ v2A = st.session_state["v2A"]
 
 elapsed = time.time() - st.session_state.get("last_change_time", 0)
 if elapsed < 1:
-    st.info("Đang cập nhật dữ liệu...")
+    st.info("Đang cập nhật dữ liệu mới...")
     time.sleep(1)
     st.rerun()
 else:
