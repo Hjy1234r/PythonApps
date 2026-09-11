@@ -49,8 +49,8 @@ is_collision = v1A > v2A
 
 x_axis, y_axis_v1B, y_axis_v2B, y_axis_deltaK = [], [], [], []
 
-for index in range(31):
-    e = index / 30.0
+for index in range(41):
+    e = index / 40
     x_axis.append(e)
     
     if is_collision:
@@ -139,24 +139,24 @@ with col_chart4:
     ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
     st.pyplot(fig4)
 
-numbering = [number for number in range(31)] 
+numbering = [number for number in range(41)] 
 numbering2 = [number2 for number2 in range(50)]
 numbering3 = [number3 for number3 in range(39)]
 
 table = {
-    "Hệ số e": [round(x_axis[i], 10) for i in numbering],
-    "v1' (m/s)": [round(y_axis_v1B[i], 10) for i in numbering],
-    "v2' (m/s)": [round(y_axis_v2B[i], 10) for i in numbering],
+    "Hệ số e": [round(x_axis[i], 11) for i in numbering],
+    "v1' (m/s)": [round(y_axis_v1B[i], 11) for i in numbering],
+    "v2' (m/s)": [round(y_axis_v2B[i], 11) for i in numbering],
     "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 4) for i in numbering],
 }
 table2 = {
-    "m1 (kg)": [round(m1_noninputlist[i], 10) for i in numbering2],
-    "v1' (m/s)": [round(v1B_newlist[i], 10) for i in numbering2],
-    "v2' (m/s)": [round(v2B_newlist[i], 10) for i in numbering2],
+    "m1 (kg)": [round(m1_noninputlist[i], 11) for i in numbering2],
+    "v1' (m/s)": [round(v1B_newlist[i], 11) for i in numbering2],
+    "v2' (m/s)": [round(v2B_newlist[i], 11) for i in numbering2],
 }
 table3 = {
-    "v1 (m/s)": [round(v1A_noninputlist[i], 10) for i in numbering3],
-    "Động năng hao hụt (J)": [round(deltaK_new[i], 10) for i in numbering3],
+    "v1 (m/s)": [round(v1A_noninputlist[i], 11) for i in numbering3],
+    "Động năng hao hụt (J)": [round(deltaK_new[i], 11) for i in numbering3],
 }
 data1 = pd.DataFrame(table)
 data2 = pd.DataFrame(table2)
@@ -165,16 +165,16 @@ data3 = pd.DataFrame(table3)
 st.markdown("---") 
 st.subheader("Đồ thị 1 & 2: Vận tốc sau và phần trăm động năng hao hụt theo hệ số e")
 with st.expander("Xem bảng giá trị"):
-    st.dataframe(data1.style.format("{:.10f}"), use_container_width=True, height=420)
+    st.dataframe(data1.style.format("{:.11f}"), use_container_width=True, height=420)
 
 st.markdown("---") 
 st.subheader("Đồ thị 3: Vận tốc sau theo khối lượng vật 1")
 with st.expander("Xem bảng giá trị"):
-    st.dataframe(data2.style.format("{:.10f}"), use_container_width=True, height=420)
+    st.dataframe(data2.style.format("{:.11f}"), use_container_width=True, height=420)
 
 st.markdown("---") 
 st.subheader("Đồ thị 4: Động năng hao hụt theo vận tốc vật 1")
 with st.expander("Xem bảng giá trị"):
-    st.dataframe(data3.style.format("{:.10f}"), use_container_width=True, height=420)
+    st.dataframe(data3.style.format("{:.11f}"), use_container_width=True, height=420)
 
 
