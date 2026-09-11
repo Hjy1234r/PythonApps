@@ -140,8 +140,8 @@ with col_chart4:
     st.pyplot(fig4)
 
 numbering = [number for number in range(31)] 
-numbering2 = [number2 for number in range(50)]
-numbering3 = [number2 for number in range(39)]
+numbering2 = [number2 for number2 in range(50)]
+numbering3 = [number3 for number3 in range(39)]
 
 table = {
     "Hệ số e": [round(x_axis[i], 4) for i in numbering],
