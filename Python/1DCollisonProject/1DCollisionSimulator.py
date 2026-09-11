@@ -88,8 +88,7 @@ else:
         ax1.set_xlabel("Hệ số phục hồi e")       
         ax1.set_ylabel("Vận tốc sau va chạm (m/s)")
         ax1.set_title(title_text, fontsize=9)
-        ax1.legend() 
-        ax1.grid(True)           
+        ax1.legend()            
         st.pyplot(fig1)
 
     with col_chart2:
@@ -98,7 +97,6 @@ else:
         ax2.set_xlabel("Hệ số phục hồi e")       
         ax2.set_ylabel("Phần trăm động năng hao hụt (%)") 
         ax2.set_title(title_text, fontsize=9)
-        ax2.grid(True)
         st.pyplot(fig2)
 
     m1_noninputlist, v1A_noninputlist = [], []
@@ -122,8 +120,7 @@ else:
         ax3.set_title(f"m2={m2}kg | v1={v1A}m/s, v2={v2A}m/s | e=1" if is_collision else "Không xảy ra va chạm (v1<v2 hoặc v1=v2)", fontsize=9)
         ax3.axhline(y=v1A, color='blue', alpha=0.5, linestyle='--', linewidth=1)
         ax3.axhline(y=v2A, color='red', alpha=0.5, linestyle='--', linewidth=1)
-        ax3.legend() 
-        ax3.grid(True)           
+        ax3.legend()            
         st.pyplot(fig3)
 
     for index3 in range(-20, 21):
@@ -147,7 +144,6 @@ else:
         ax4.set_title(f"m1={m1}kg, m2={m2}kg | v2={v2A}m/s | e=0.5", fontsize=9)
         ax4.axvline(x=v2A, color='gray', linestyle='--', linewidth=1)
         ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
-        ax4.grid(True)
         st.pyplot(fig4)
 
     numbering = [number for number in range(41)] 
