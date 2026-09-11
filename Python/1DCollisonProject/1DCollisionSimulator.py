@@ -164,17 +164,17 @@ data3 = pd.DataFrame(table3)
 
 st.markdown("---") 
 st.subheader("Đồ thị 1 & 2: Vận tốc sau và phần trăm động năng hao hụt theo hệ số e")
-with st.expander("Mở rộng"):
+with st.expander("Xem bảng giá trị"):
     st.dataframe(data1.style.format("{:.10f}"), use_container_width=True, height=420)
 
 st.markdown("---") 
 st.subheader("Đồ thị 3: Vận tốc sau theo khối lượng vật 1")
-with st.expander("Mở rộng"):
+with st.expander("Xem bảng giá trị"):
     st.dataframe(data2.style.format("{:.10f}"), use_container_width=True, height=420)
 
 st.markdown("---") 
-st.subheader("Đồ thị 3: Động năng hao hụt theo vận tốc vật 1")
-with st.expander("Mở rộng"):
+st.subheader("Đồ thị 4: Động năng hao hụt theo vận tốc vật 1")
+with st.expander("Xem bảng giá trị"):
     st.dataframe(data3.style.format("{:.10f}"), use_container_width=True, height=420)
 
 
