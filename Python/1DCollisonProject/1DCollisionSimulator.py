@@ -144,26 +144,37 @@ numbering2 = [number2 for number2 in range(50)]
 numbering3 = [number3 for number3 in range(39)]
 
 table = {
-    "Hệ số e": [round(x_axis[i], 4) for i in numbering],
-    "v1' (m/s)": [round(y_axis_v1B[i], 4) for i in numbering],
-    "v2' (m/s)": [round(y_axis_v2B[i], 4) for i in numbering],
+    "Hệ số e": [round(x_axis[i], 10) for i in numbering],
+    "v1' (m/s)": [round(y_axis_v1B[i], 10) for i in numbering],
+    "v2' (m/s)": [round(y_axis_v2B[i], 10) for i in numbering],
     "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 4) for i in numbering],
 }
 table2 = {
-    "m1 (kg)": [round(m1_noninputlist[i], 4) for i in numbering2],
-    "v1' (m/s)": [round(v1B_newlist[i], 4) for i in numbering2],
-    "v2' (m/s)": [round(v2B_newlist[i], 4) for i in numbering2],
+    "m1 (kg)": [round(m1_noninputlist[i], 10) for i in numbering2],
+    "v1' (m/s)": [round(v1B_newlist[i], 10) for i in numbering2],
+    "v2' (m/s)": [round(v2B_newlist[i], 10) for i in numbering2],
 }
 table3 = {
-    "v1 (m/s)": [round(v1A_noninputlist[i], 4) for i in numbering3],
-    "Động năng hao hụt (J)": [round(deltaK_new[i], 4) for i in numbering3],
+    "v1 (m/s)": [round(v1A_noninputlist[i], 10) for i in numbering3],
+    "Động năng hao hụt (J)": [round(deltaK_new[i], 10) for i in numbering3],
 }
 df_analysis1 = pd.DataFrame(table)
 df_analysis2 = pd.DataFrame(table2)
 df_analysis3 = pd.DataFrame(table3)
+
 st.markdown("---") 
-st.dataframe(df_analysis1, use_container_width=True)
-st.dataframe(df_analysis2, use_container_width=True)
-st.dataframe(df_analysis3, use_container_width=True)
+st.subheader("Đồ thị 1 & 2: Vận tốc sau và phần trăm động năng hao hụt theo hệ số e")
+with st.expander("Mở rộng"):
+    st.dataframe(df_analysis1, df.style.format("{:.10f}"), use_container_width=True, height=420)
+
+st.markdown("---") 
+st.subheader("Đồ thị 3: Vận tốc sau theo khối lượng vật 1")
+with st.expander("Mở rộng"):
+    st.dataframe(df_analysis2, df.style.format("{:.10f}"), use_container_width=True, height=420)
+
+st.markdown("---") 
+st.subheader("Đồ thị 3: Động năng hao hụt theo vận tốc vật 1")
+with st.expander("Mở rộng"):
+    st.dataframe(df_analysis3, df.style.format("{:.10f}"), use_container_width=True, height=420)
 
 
