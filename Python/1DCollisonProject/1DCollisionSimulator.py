@@ -154,7 +154,7 @@ else:
         "Hệ số e": [round(x_axis[i], 11) for i in numbering],
         "v1' (m/s)": [round(y_axis_v1B[i], 11) for i in numbering],
         "v2' (m/s)": [round(y_axis_v2B[i], 11) for i in numbering],
-        "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 4) for i in numbering],
+        "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 11) for i in numbering],
     }
     table2 = {
         "m1 (kg)": [round(m1_noninputlist[i], 11) for i in numbering2],
