@@ -124,11 +124,12 @@ else:
         st.pyplot(fig3)
 
     for index3 in range(-20, 21):
+        e05=0.5
         v1A_noninput = index3/2
         v1A_noninputlist.append(v1A_noninput)
 
-        v1Btemp = (v1A_noninput*(m1 - 0.5*m2) + v2A*m2*(0.5+1)) / (m1 + m2)
-        v2Btemp = (v2A*(m2 - 0.5*m1) + v1A_noninput*m1*(0.5+1)) / (m1 + m2)
+        v1Btemp = (v1A_noninput*(m1 - e05*m2) + v2A*m2*(e05+1)) / (m1 + m2)
+        v2Btemp = (v2A*(m2 - e05*m1) + v1A_noninput*m1*(e05+1)) / (m1 + m2)
 
         k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
         k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
