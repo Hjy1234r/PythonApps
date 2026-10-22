@@ -124,7 +124,7 @@ else:
         st.pyplot(fig3)
 
     for index3 in range(-20, 21):
-        e05=0
+        e05=0.5
         v1A_noninput = index3/2
         v1A_noninputlist.append(v1A_noninput)
 
