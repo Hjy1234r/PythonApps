@@ -1,0 +1,17 @@
+# Whitelist: ignore everything, then re-include only Python/1DCollisonProject/
+
+# 1. Ignore everything at the root
+/*
+
+# 2. Keep this file and the Python folder itself
+!/.gitignore
+!/Python/
+
+# 3. Inside Python/, ignore everything except the collision project
+/Python/*
+!/Python/1DCollisonProject/
+
+# 4. Junk inside the project that shouldn't be committed
+.venv/
+__pycache__/
+.DS_Store
