@@ -3,7 +3,7 @@ import streamlit as st
 import pandas as pd 
 import time
 
-st.set_page_config(layout="wide", page_title="")
+st.set_page_config(layout="wide", page_title="Mô phỏng va chạm một chiều")  
 
 for key, default in [("m1", 0.1), ("m2", 0.1), ("v1A", 0.0), ("v2A", 0.0)]:
     if key not in st.session_state:
@@ -76,6 +76,9 @@ else:
         y_axis_v2B.append(v2B)
         y_axis_deltaK.append(deltaKpercent)
 
+    p_before = m1*v1A + m2*v2A
+    y_axis_p_after = [m1*a + m2*b for a, b in zip(y_axis_v1B, y_axis_v2B)]
+
     col_chart1, col_chart2 = st.columns(2)
     col_chart3, col_chart4 = st.columns(2)
 
@@ -90,6 +93,7 @@ else:
         ax1.set_title(title_text, fontsize=9)
         ax1.legend()            
         st.pyplot(fig1)
+        plt.close(fig1)
 
     with col_chart2:
         fig2, ax2 = plt.subplots(figsize=(5, 4))
@@ -98,6 +102,7 @@ else:
         ax2.set_ylabel("Phần trăm động năng hao hụt (%)") 
         ax2.set_title(title_text, fontsize=9)
         st.pyplot(fig2)
+        plt.close(fig2)
 
     m1_noninputlist, v1A_noninputlist = [], []
     v1B_newlist, v2B_newlist = [], []
@@ -106,8 +111,11 @@ else:
     for index2 in range(1,51):
         m1_noninput = index2/10
         m1_noninputlist.append(m1_noninput)
-        v1Bnew = (v1A*(m1_noninput - 1*m2) + v2A*m2*(1+1)) / (m1_noninput + m2)
-        v2Bnew = (v2A*(m2 - 1*m1_noninput) + v1A*m1_noninput*(1+1)) / (m1_noninput + m2)
+        if is_collision:  
+            v1Bnew = (v1A*(m1_noninput - 1*m2) + v2A*m2*(1+1)) / (m1_noninput + m2)
+            v2Bnew = (v2A*(m2 - 1*m1_noninput) + v1A*m1_noninput*(1+1)) / (m1_noninput + m2)
+        else:
+            v1Bnew, v2Bnew = v1A, v2A
         v1B_newlist.append(v1Bnew)
         v2B_newlist.append(v2Bnew)
 
@@ -122,19 +130,22 @@ else:
         ax3.axhline(y=v2A, color='red', alpha=0.5, linestyle='--', linewidth=1)
         ax3.legend()            
         st.pyplot(fig3)
+        plt.close(fig3)
 
     for index3 in range(-20, 21):
         e05=0.5
         v1A_noninput = index3/2
         v1A_noninputlist.append(v1A_noninput)
+        if v1A_noninput > v2A:  
+            v1Btemp = (v1A_noninput*(m1 - e05*m2) + v2A*m2*(e05+1)) / (m1 + m2)
+            v2Btemp = (v2A*(m2 - e05*m1) + v1A_noninput*m1*(e05+1)) / (m1 + m2)
 
-        v1Btemp = (v1A_noninput*(m1 - e05*m2) + v2A*m2*(e05+1)) / (m1 + m2)
-        v2Btemp = (v2A*(m2 - e05*m1) + v1A_noninput*m1*(e05+1)) / (m1 + m2)
+            k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
+            k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
 
-        k1new = 0.5 * (m1 * v1A_noninput**2 + m2 * v2A**2)
-        k2new = 0.5 * (m1 * v1Btemp**2 + m2 * v2Btemp**2)
-
-        deltaK_temp = k1new - k2new
+            deltaK_temp = k1new - k2new
+        else:
+            deltaK_temp = 0.0
         deltaK_new.append(deltaK_temp)
         
     with col_chart4:
@@ -146,16 +157,19 @@ else:
         ax4.axvline(x=v2A, color='gray', linestyle='--', linewidth=1)
         ax4.axvspan(-10, v2A, hatch='///', facecolor='none', edgecolor='gray')
         st.pyplot(fig4)
+        plt.close(fig4)
 
-    numbering = [number for number in range(41)] 
-    numbering2 = [number2 for number2 in range(50)]
-    numbering3 = [number3 for number3 in range(39)]
+    numbering = range(len(x_axis))
+    numbering2 = range(len(m1_noninputlist))
+    numbering3 = range(len(v1A_noninputlist))
 
     table = {
         "Hệ số e": [round(x_axis[i], 11) for i in numbering],
         "v1' (m/s)": [round(y_axis_v1B[i], 11) for i in numbering],
         "v2' (m/s)": [round(y_axis_v2B[i], 11) for i in numbering],
         "Phần trăm động năng hao hụt (%)": [round(y_axis_deltaK[i], 11) for i in numbering],
+        "p trước (kg·m/s)": [round(p_before, 11) for i in numbering],
+        "p sau (kg·m/s)": [round(y_axis_p_after[i], 11) for i in numbering],
     }
     table2 = {
         "m1 (kg)": [round(m1_noninputlist[i], 11) for i in numbering2],
@@ -172,6 +186,9 @@ else:
 
     st.markdown("---") 
     st.subheader("Đồ thị 1 & 2: Vận tốc sau và phần trăm động năng hao hụt theo hệ số e")
+    max_dp = max(abs(p - p_before) for p in y_axis_p_after)
+    st.caption(f"Kiểm tra động lượng: p trước = {p_before:.6f} kg·m/s; "
+               f"chênh lệch lớn nhất |p sau − p trước| trên mọi e = {max_dp:.2e} kg·m/s")
     with st.expander("Xem bảng giá trị"):
         st.dataframe(data1.style.format("{:.11f}"), use_container_width=True, height=420)
 
