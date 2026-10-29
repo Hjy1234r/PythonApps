@@ -188,7 +188,7 @@ else:
     st.subheader("Đồ thị 1 & 2: Vận tốc sau và phần trăm động năng hao hụt theo hệ số e")
     max_dp = max(abs(p - p_before) for p in y_axis_p_after)
     st.caption(f"Kiểm tra động lượng: p trước = {p_before:.6f} kg·m/s; "
-               f"chênh lệch lớn nhất |p sau − p trước| trên mọi e = {max_dp:.2e} kg·m/s")
+               f"chênh lệch lớn nhất trên mọi e = {max_dp:.2e} kg·m/s")
     with st.expander("Xem bảng giá trị"):
         st.dataframe(data1.style.format("{:.11f}"), use_container_width=True, height=420)
 
